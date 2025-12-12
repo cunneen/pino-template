@@ -1,0 +1,30 @@
+{
+  "name": "pino-template",
+  "description": "An Eta template transport for the pino logging library",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "index.js",
+  "author": "Mike Cunneen",
+  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@dotenvx/dotenvx": "^1.51.1",
+    "chai": "^6.2.1",
+    "git-cliff": "^2.10.1",
+    "husky": "^9.1.7",
+    "mocha": "^11.7.5",
+    "release-it": "^19.1.0"
+  },
+  "scripts": {
+    "test": "dotenvx run -- ./node_modules/.bin/mocha",
+    "prepare": "husky",
+    "commitlint": "commitlint --edit",
+    "release-changelog": "git-cliff --unreleased --prepend CHANGELOG.md --tag ",
+    "release": "dotenvx run release-it -- -i -u"
+  }
+}
