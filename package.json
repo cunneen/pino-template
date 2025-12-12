@@ -18,7 +18,10 @@
     "git-cliff": "^2.10.1",
     "husky": "^9.1.7",
     "mocha": "^11.7.5",
-    "release-it": "^19.1.0"
+    "release-it": "^19.1.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   },
   "scripts": {
     "test": "dotenvx run -- ./node_modules/.bin/mocha",
@@ -26,5 +29,9 @@
     "commitlint": "commitlint --edit",
     "release-changelog": "git-cliff --unreleased --prepend CHANGELOG.md --tag ",
     "release": "dotenvx run release-it -- -i -u"
+  },
+  "peerDependencies": {
+    "eta": "^4.0.1",
+    "pino": "^10.1.0"
   }
 }
