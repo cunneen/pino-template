@@ -1,0 +1,8 @@
+{
+  "json.schemas": [
+    {
+      "url": "https://unpkg.com/tsup/schema.json",
+      "fileMatch": ["tsup.config.json"]
+    }
+  ]
+}

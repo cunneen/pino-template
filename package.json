@@ -2,8 +2,7 @@
   "name": "pino-template",
   "description": "An Eta template transport for the pino logging library",
   "version": "0.0.1",
-  "type": "module",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Mike Cunneen",
   "private": "false",
   "publishConfig": {
@@ -11,24 +10,29 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@biomejs/biome": "^2.3.8",
     "@commitlint/cli": "^20.2.0",
     "@commitlint/config-conventional": "^20.2.0",
     "@dotenvx/dotenvx": "^1.51.1",
-    "chai": "^6.2.1",
     "git-cliff": "^2.10.1",
     "husky": "^9.1.7",
-    "mocha": "^11.7.5",
     "release-it": "^19.1.0",
+    "tap": "^21.5.0",
     "tsup": "^8.5.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "test": "dotenvx run -- ./node_modules/.bin/mocha",
+    "test": "tap run --allow-empty-coverage --disable-coverage --timeout=60000",
     "prepare": "husky",
     "commitlint": "commitlint --edit",
+    "lint": "biome check --fix",
     "release-changelog": "git-cliff --unreleased --prepend CHANGELOG.md --tag ",
-    "release": "dotenvx run release-it -- -i -u"
+    "prerelease": "npm run test-coverage",
+    "release": "dotenvx run release-it -- -i -u",
+    "start": "tsx src/index.ts",
+    "build": "tsup",
+    "test-coverage": "tap run --show-full-coverage --timeout=60000"
   },
   "peerDependencies": {
     "eta": "^4.0.1",
