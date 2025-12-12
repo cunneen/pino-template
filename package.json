@@ -16,6 +16,7 @@
     "@dotenvx/dotenvx": "^1.51.1",
     "git-cliff": "^2.10.1",
     "husky": "^9.1.7",
+    "pino-test": "^1.1.0",
     "release-it": "^19.1.0",
     "tap": "^21.5.0",
     "tsup": "^8.5.1",
