@@ -1,3 +1,8 @@
+## [1.0.2] - 2025-12-15
+
+### 🐛 Bug Fixes
+
+- :bug: ESM exports and example
 ## [1.0.1] - 2025-12-15
 
 ### 🐛 Bug Fixes
