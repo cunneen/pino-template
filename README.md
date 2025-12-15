@@ -1,29 +1,8 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a id="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
 
 <!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 
@@ -31,23 +10,12 @@
 <br />
 <div align="center">
   <a href="https://github.com/cunneen/pino-template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="./images/pino-template.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">pino-template</h3>
+  <h3 align="center">pino-template</h3>
 
-  <p align="center">
-    An Eta template transport for the pino logging library
-    <br />
-    <a href="https://github.com/cunneen/pino-template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/cunneen/pino-template">View Demo</a>
-    &middot;
-    <a href="https://github.com/cunneen/pino-template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    &middot;
-    <a href="https://github.com/cunneen/pino-template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
-  </p>
+  An [Eta][eta-url] template transport for the pino logging library
 </div>
 
 
@@ -55,205 +23,202 @@
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
+  <div>
+
+- [About The Project](#about-the-project)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+  - [Options](#options)
+- [License](#license)
+- [Project Link](#project-link)
+
 </details>
+
 
 
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+This is a pipeline transport for the [pino.js][pino.js] logging library, which allows you to transform the logging output by applying an [Eta][eta-url] template.
 
-Here's a blank template to get started. To avoid retyping too much info, do a search and replace with your text editor for the following: `cunneen`, `pino-template`, ``, `linkedin_username`, `email_client`, `email`, `pino-template`, `An Eta template transport for the pino logging library`, `MIT`
+> For those unfamiliar with Eta, perhaps you've encountered [EJS][EJS-url]. Eta templates are very similar to EJS templates. 
+
+e.g.
+
+**template**
+
+```js
+<%
+  // extract the context and this log message
+  const {data: d, context: ctx} = it;
+  const levelName = (ctx?.[d.level] ?? d.level).toUpperCase(); // e.g. "INFO"
+%><%=
+  // output our formatted log message as a string
+  `${
+    new Date(d.time)
+      .toISOString()
+      .substring(0, 19)
+  } ${
+   levelName
+  } - ${
+   d.msg
+  }`
+%>
+```
+
+**input**
+
+  ```json
+  {"levelName":"info","level":30,"time":1531171074631,"msg":"hello world","pid":657,"hostname":"Davids-MBP-3.fritz.box"}
+  ```
+
+**result**
+
+```txt
+2018-07-09T21:17:54 - INFO - hello world
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![TypeScript][TypeScript]][Typescript-url]
+* [![Node.js][Node.js]][Nodejs-url]
+* [![Eta][eta]][eta-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+While this project has no dependencies, it does have the following `peerDependencies`:
+
+
+* [pino][pino.js]@^10.1.0
   ```sh
-  npm install npm@latest -g
+  npm install "pino@^10.1.0" --save
   ```
+* [eta][eta-url]@^4.0.1
+  ```sh
+  npm install "eta@^4.0.1" --save
+  ```
+
+* **Node versions**:
+  This project is tested on Node `24.12.0` .
+
+* **ES Module**: This project is only available as an ES module (a.k.a. "ESM") i.e. it probably won't work in CommonJS, except perhaps using [dynamic import][dynamic-import].
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Ensure you've installed the [prerequisites](#prerequisites) above.
+2. Install this NPM package (pino-template):
    ```sh
-   git clone https://github.com/cunneen/pino-template.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin cunneen/pino-template
-   git remote -v # confirm the changes
+   npm install pino-template --save
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Combine `pino-template` (this module) as part of a [pino transport pipeline][pino-transport-pipeline].
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+### Options
+
+| **option**        | **description**                                                                          | **example**                                        |
+|-------------------|------------------------------------------------------------------------------------------|----------------------------------------------------|
+| `template`        | The Eta template as a string. Each log message will be available as `it.data`. Required. | `<%= it.data.msg + it.context.foo %>`              |
+| `templateContext` | An object which will be made available to the Eta template as `it.context` . Optional.   | `{"foo":"bar"}`                                    |
+| `templateOptions` | Options which will be passed to the [Eta constructor][eta-constructor] . Optional.       | `{"debug":false,"cache":false,"autoEscape":false}` |
+
+**Example**
+
+The example below adds an extra `"levelName"` property to each JSON log line i.e. it changes this:
+
+  ```json
+  {"level":30,"time":1531171074631,"msg":"hello world","pid":657,"hostname":"Davids-MBP-3.fritz.box"}
+  ```
+
+into this:
+
+  ```json
+  {"levelName":"info","level":30,"time":1531171074631,"msg":"hello world","pid":657,"hostname":"Davids-MBP-3.fritz.box"}
+  ```
+
+```js
+import pino from 'pino'
+
+const logger = pino({
+  transport: {
+    pipeline: [{
+      target: 'pino-template',
+      options: {
+        // Provide the Eta template here as the "template" property value. The `"it.data"`
+        //  object contains the log data (i.e. level, time, msg, hostname etc); while 
+        //  the `"it.context"` object contains whatever you provide as the 
+        //  `"templateContext"` property below
+        template: `<%
+        const {context, data} = it; 
+      %><%= 
+        JSON.stringify({...data, "levelName":context?.levelMapping?.[data.level] ?? data.level}) 
+      %>`,
+        templateContext: { levelMapping: pino.levels.labels },
+      },
+    }, {
+      // Use target: 'pino/file' with STDOUT descriptor 1 to write
+      // logs without any change.
+      target: 'pino/file',
+      options: { destination: 1 }
+    }]
+  }
+})
+
+logger.info('hello world')
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/cunneen/pino-template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Top contributors:
-
-<a href="https://github.com/cunneen/pino-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=cunneen/pino-template" alt="contrib.rocks image" />
-</a>
-
-
 
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT. See `LICENSE.txt` for more information.
+Distributed under the MIT license. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
-<!-- CONTACT -->
-## Contact
+<!-- PROJECT LINK -->
+## Project Link
 
-Your Name - [@](https://twitter.com/) - email@email_client.com
-
-Project Link: [https://github.com/cunneen/pino-template](https://github.com/cunneen/pino-template)
+[https://github.com/cunneen/pino-template](https://github.com/cunneen/pino-template)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/cunneen/pino-template.svg?style=for-the-badge
-[contributors-url]: https://github.com/cunneen/pino-template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/cunneen/pino-template.svg?style=for-the-badge
-[forks-url]: https://github.com/cunneen/pino-template/network/members
-[stars-shield]: https://img.shields.io/github/stars/cunneen/pino-template.svg?style=for-the-badge
-[stars-url]: https://github.com/cunneen/pino-template/stargazers
+[eta-url]: https://eta.js.org/
+[eta-constructor]: https://eta.js.org/docs/4.x.x/api/overview#setting-up-eta
 [issues-shield]: https://img.shields.io/github/issues/cunneen/pino-template.svg?style=for-the-badge
 [issues-url]: https://github.com/cunneen/pino-template/issues
 [license-shield]: https://img.shields.io/github/license/cunneen/pino-template.svg?style=for-the-badge
 [license-url]: https://github.com/cunneen/pino-template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png
+[Typescript-url]: https://www.typescriptlang.org/
+[Nodejs-url]: https://nodejs.org/
+[pino.js]: https://getpino.io
+[EJS-url]: https://ejs.co/
+[dynamic-import]: https://nodejs.org/api/esm.html#import-expressions
+[pino-transport-pipeline]: https://getpino.io/#/docs/transports?id=creating-a-transport-pipeline
+
 <!-- Shields.io badges. You can a comprehensive list with many more badges at: https://github.com/inttter/md-badges -->
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[Eta]: https://img.shields.io/badge/%CE%B7-Eta-a8b1ff "Eta"
+[EJS]: https://img.shields.io/badge/ejs-#B4CA65?logo=ejs&logoColor=fff "EJS"
+[TypeScript]: https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff "TypeScript"
+[Node.js]: https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white "Node.js"

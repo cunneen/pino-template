@@ -1,8 +1,0 @@
-{
-  "$schema": "https://unpkg.com/tsup/schema.json",
-  "entry": ["src/index.ts"],
-  "dts": true,
-  "splitting": false,
-  "sourcemap": true,
-  "clean": true
-}

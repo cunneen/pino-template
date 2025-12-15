@@ -2,7 +2,15 @@
   "name": "pino-template",
   "description": "An Eta template transport for the pino logging library",
   "version": "0.0.1",
-  "main": "dist/index.js",
+  "type": "module",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
   "author": "Mike Cunneen",
   "private": "false",
   "publishConfig": {
@@ -19,11 +27,10 @@
     "pino-test": "^1.1.0",
     "release-it": "^19.1.0",
     "tap": "^21.5.0",
-    "tsup": "^8.5.1",
-    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "scripts": {
+    "pretest": "npm run build",
     "test": "tap run --allow-empty-coverage --disable-coverage --timeout=60000",
     "prepare": "husky",
     "commitlint": "commitlint --edit",
@@ -31,8 +38,7 @@
     "release-changelog": "git-cliff --unreleased --prepend CHANGELOG.md --tag ",
     "prerelease": "npm run test-coverage",
     "release": "dotenvx run release-it -- -i -u",
-    "start": "tsx src/index.ts",
-    "build": "tsup",
+    "build": "tsc",
     "test-coverage": "tap run --show-full-coverage --timeout=60000"
   },
   "peerDependencies": {

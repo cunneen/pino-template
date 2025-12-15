@@ -1,0 +1,17 @@
+{
+  "name": "pino-template-example",
+  "version": "1.0.0",
+  "description": "Example for pino-template",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "bash -c 'echo \"Error\"; exit 1;'"
+  },
+  "dependencies": {
+    "eta": "^4.5.0",
+    "pino": "^10.1.0",
+    "pino-template": ".."
+  }
+}
