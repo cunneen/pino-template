@@ -12,7 +12,6 @@
     }
   },
   "author": "Mike Cunneen",
-  "private": "false",
   "publishConfig": {
     "access": "public"
   },
