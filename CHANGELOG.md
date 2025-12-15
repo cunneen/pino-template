@@ -1,3 +1,9 @@
+## [1.0.3] - 2025-12-15
+
+### 📚 Documentation
+
+- :memo: README - fix imbalanced tags
+- :memo: package.json : add bugs and repository
 ## [1.0.2] - 2025-12-15
 
 ### 🐛 Bug Fixes
