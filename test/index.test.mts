@@ -4,13 +4,13 @@ import { promisify } from "node:util";
 import pino, { type Logger, type TransportPipelineOptions } from "pino";
 import { once, sink } from "pino-test";
 import { t } from "tap";
-import type { PinoTransportItemType } from "../src/index.mts";
+import type { PinoTransportItemType } from "../src/index.d.mts";
 
 const __dirname = import.meta.dirname;
 
-// const templateTransportPath = path.resolve(path.join(__dirname, "../dist/index.js"))
 const templateTransportPath = path.resolve(
-  path.join(__dirname, "../dist/index.mjs"),
+  // path.join(__dirname, "..","src","index.mts"),
+  path.join(__dirname, "..","dist","index.mjs"),
 );
 
 t.test("pino - vanilla", async (t) => {

@@ -39,7 +39,7 @@
     "prerelease": "npm run test-coverage",
     "release": "dotenvx run release-it -- -i -u",
     "build": "tsc",
-    "test-coverage": "tap run --show-full-coverage --timeout=60000"
+    "test-coverage": "tap run --show-full-coverage --branches=70 --functions=70 --timeout=60000"
   },
   "peerDependencies": {
     "eta": "^4.0.1",
