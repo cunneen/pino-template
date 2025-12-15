@@ -35,6 +35,7 @@
 - [License](#license)
 - [Project Link](#project-link)
 
+</div>
 </details>
 
 
@@ -132,7 +133,7 @@ Combine `pino-template` (this module) as part of a [pino transport pipeline][pin
 ### Options
 
 | **option**        | **description**                                                                          | **example**                                        |
-|-------------------|------------------------------------------------------------------------------------------|----------------------------------------------------|
+| ----------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------------- |
 | `template`        | The Eta template as a string. Each log message will be available as `it.data`. Required. | `<%= it.data.msg + it.context.foo %>`              |
 | `templateContext` | An object which will be made available to the Eta template as `it.context` . Optional.   | `{"foo":"bar"}`                                    |
 | `templateOptions` | Options which will be passed to the [Eta constructor][eta-constructor] . Optional.       | `{"debug":false,"cache":false,"autoEscape":false}` |
