@@ -1,3 +1,9 @@
+## [1.0.1] - 2025-12-15
+
+### 🐛 Bug Fixes
+
+- :wrench: fix npm error "This package has been marked as private"
+- :see_no_evil: Add .npmignore file
 ## [1.0.0] - 2025-12-15
 
 ### 🚀 Features
