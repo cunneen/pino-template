@@ -1,5 +1,7 @@
-import path from 'node:path'
 import pino from 'pino'
+import { default as pinoTemplate } from 'pino-template'
+
+console.log(pinoTemplate);
 
 // logs in the format:
 //  2025-12-15T13:47:03 INFO - hello world
@@ -22,11 +24,11 @@ const logger = pino({
   transport: {
     pipeline: [
       {
-        target: path.resolve(import.meta.dirname, '..','dist','index.mjs'),
+        target: 'pino-template',
         options: {
           template: templateString,
           templateContext: pino.levels.labels,
-          
+
         }
       },
       {

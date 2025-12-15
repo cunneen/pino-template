@@ -3,14 +3,8 @@
   "description": "An Eta template transport for the pino logging library",
   "version": "1.0.1",
   "type": "module",
-  "module": "dist/index.mjs",
+  "main": "dist/index.mjs",
   "types": "dist/index.d.mts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.mts",
-      "import": "./dist/index.mjs"
-    }
-  },
   "author": "Mike Cunneen",
   "publishConfig": {
     "access": "public"
