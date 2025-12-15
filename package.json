@@ -1,7 +1,7 @@
 {
   "name": "pino-template",
   "description": "An Eta template transport for the pino logging library",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
   "module": "dist/index.mjs",
   "types": "dist/index.d.mts",
