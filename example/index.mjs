@@ -1,7 +1,4 @@
 import pino from 'pino'
-import { default as pinoTemplate } from 'pino-template'
-
-console.log(pinoTemplate);
 
 // logs in the format:
 //  2025-12-15T13:47:03 INFO - hello world
