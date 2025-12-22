@@ -1,3 +1,9 @@
+## [1.0.4] - 2025-12-22
+
+### 📚 Documentation
+
+- :coffin: example : remove unnecessary import
+- :memo: tidy up examples in README
 ## [1.0.3] - 2025-12-15
 
 ### 📚 Documentation
