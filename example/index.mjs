@@ -5,6 +5,7 @@ import pino from 'pino'
 const templateString = `<%
   // extract the context and this log message
   const {data: d, context: ctx} = it;
+  // get the name of the level from the mapping provided as context
   const levelName = (ctx?.[d.level] ?? d.level).toUpperCase(); // e.g. "INFO"
 %><%=
   \`\${

@@ -32,6 +32,7 @@
   - [Installation](#installation)
 - [Usage](#usage)
   - [Options](#options)
+  - [Example](#example)
 - [License](#license)
 - [Project Link](#project-link)
 
@@ -54,8 +55,9 @@ e.g.
 
 ```js
 <%
-  // extract the context and this log message
+  // extract the context and this log message from `it`
   const {data: d, context: ctx} = it;
+  // get the name of the level from the mapping provided as context
   const levelName = (ctx?.[d.level] ?? d.level).toUpperCase(); // e.g. "INFO"
 %><%=
   // output our formatted log message as a string
@@ -63,7 +65,7 @@ e.g.
     new Date(d.time)
       .toISOString()
       .substring(0, 19)
-  } ${
+  } - ${
    levelName
   } - ${
    d.msg
@@ -138,7 +140,7 @@ Combine `pino-template` (this module) as part of a [pino transport pipeline][pin
 | `templateContext` | An object which will be made available to the Eta template as `it.context` . Optional.   | `{"foo":"bar"}`                                    |
 | `templateOptions` | Options which will be passed to the [Eta constructor][eta-constructor] . Optional.       | `{"debug":false,"cache":false,"autoEscape":false}` |
 
-**Example**
+### Example
 
 The example below adds an extra `"levelName"` property to each JSON log line i.e. it changes this:
 
